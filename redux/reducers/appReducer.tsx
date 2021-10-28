@@ -20,6 +20,7 @@ const appReducer = (state: IAppState = countInit, action: AppAction) => {
     case "__NEXT_REDUX_WRAPPER_HYDRATE__":
       return {
         ...state,
+        ...action.payload,
       };
     default:
       return state;

@@ -30,9 +30,8 @@ const Feed = () => {
 // );
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async () => {
-    console.log("object init");
     store.dispatch({ type: "ADD" });
-    console.log("object");
+
     return {
       props: {},
     };

@@ -1,10 +1,15 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addCount } from "../redux/actions/appAction";
 import { IAppState } from "../redux/reducers/appReducer";
 
 const Home: NextPage = () => {
   const state = useSelector((state: IAppState) => state.count);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(addCount());
+  };
   return (
     <div>
       <p>This is Home</p>
@@ -15,6 +20,7 @@ const Home: NextPage = () => {
         </Link>
       </p>
       <p>Count: {state}</p>
+      <button onClick={handleClick}>Click me</button>
     </div>
   );
 };

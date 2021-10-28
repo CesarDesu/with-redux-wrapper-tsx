@@ -18,10 +18,16 @@ const appReducer = (state: IAppState = countInit, action: AppAction) => {
         count: state.count + 1,
       };
     case "__NEXT_REDUX_WRAPPER_HYDRATE__":
-      return {
-        ...state,
-        ...action.payload,
+      const nextState = {
+        ...state, // use previous state
+        ...action.payload, // apply delta from hydration
       };
+      if (state.count) nextState.count = state.count; // preserve count value on client side navigation
+      return nextState;
+    // return {
+    //   ...state,
+    //   ...action.payload,
+    // };
     default:
       return state;
   }
